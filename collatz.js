@@ -1,5 +1,16 @@
 function solution(num) {
-  var answer = 0;
+  var n = 0;
+
+  if (num % 2 == 0) {
+    num = num / 2;
+    n++;
+  } else {
+    if ((num = 1)) {
+      return n;
+    }
+    num = num * 3 + 1;
+  }
+
   return answer;
 }
 console.log(solution(3));
