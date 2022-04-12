@@ -1,4 +1,4 @@
-//문제 설명
+//*문제 설명
 // 정수를 담고 있는 배열 arr의 평균값을 return하는 함수, solution을 완성해보세요.
 
 // 제한사항
@@ -9,7 +9,22 @@
 // [1,2,3,4]	2.5
 // [5,5]	5
 
+// function solution(arr) {
+//   var sum = 0;
+//   arr.forEach(function (element) {
+//     sum += element;
+//   });
+//   const average = sum / arr.length;
+//   return average;
+// }
+// console.log(solution([1, 2, 3, 4]));
+
 function solution(arr) {
-  var answer = 0;
-  return answer;
+  var initial_value = 0;
+  const average = arr.reduce(
+    (prev, current) => prev + current / arr.length,
+    initial_value
+  );
+  return average;
 }
+console.log(solution([1, 2, 3, 4]));
