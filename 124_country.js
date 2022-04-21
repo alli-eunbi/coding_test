@@ -28,29 +28,22 @@
 
 //* 내 답안
 function solution(n) {
-  var whole_num = "";
+  var answer = "";
 
-  while (1 <= n) {
-    var divide = 0;
-    num = Math.floor(n / 3);
-    console.log(num, "숫자");
-
-    if (n === 1) {
-      return (whole_num = whole_num + "1");
-    }
-    if (num === 1) {
-      num = 1;
-    } else if (num === 2) {
-      num = 2;
+  while (n > 0) {
+    // 3 나머지 -> 4, 1, 2
+    if (n % 3 == 0) {
+      answer = "4" + answer;
+      n -= 1; // 나누어 떨어질 경우 자리수 바뀜
+    } else if (n % 3 == 1) {
+      answer = "1" + answer;
     } else {
-      num = 4;
+      answer = "2" + answer;
     }
-    whole_num = whole_num + String(num);
-    n = Math.floor(n / 3);
-    // console.log(n, "숫자");
+    n = n / 3;
   }
 
-  return whole_num;
+  return answer;
 }
 
 console.log(solution(10));
