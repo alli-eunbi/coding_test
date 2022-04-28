@@ -44,34 +44,34 @@
 // 22
 
 //* 내 답안
-function solution(arr) {
-  const rest =
-    arr.reduce((a, b) => {
-      return a + b;
-    }, 0) - 100;
+// function solution(arr) {
+//   const rest =
+//     arr.reduce((a, b) => {
+//       return a + b;
+//     }, 0) - 100;
 
-  let answer = [];
-  outerFor: for (let x = 0; x < arr.length; x++) {
-    for (let y = arr.length - 1; y > 0; y--) {
-      if (arr[x] + arr[y] === rest) {
-        answer.push(x);
-        answer.push(y);
-        break outerFor;
-      }
-    }
-    x++;
-  }
+//   let answer = [];
+//   outerFor: for (let x = 0; x < arr.length; x++) {
+//     for (let y = 1; y < arr.length; y++) {
+//       if (arr[x] + arr[y] === rest) {
+//         answer.push(x);
+//         answer.push(y);
+//         break outerFor;
+//       }
+//     }
+//     x++;
+//   }
 
-  answer.sort();
-  arr.splice(answer[0], 1);
-  arr.splice(answer[1] - 1, 1);
-  return arr;
-}
+//   answer.sort();
+//   arr.splice(answer[0], 1);
+//   arr.splice(answer[1] - 1, 1);
+//   return arr;
+// }
 
-const arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
-console.log(solution(arr));
-const arr1 = [8, 6, 5, 1, 37, 30, 28, 22, 36];
-console.log(solution(arr1));
+// const arr = [20, 7, 23, 19, 10, 15, 25, 8, 13];
+// console.log(solution(arr));
+// const arr1 = [8, 6, 5, 1, 37, 30, 28, 22, 36];
+// console.log(solution(arr1));
 //* 다른 사람 답안
 
 //★ 배운점
@@ -107,32 +107,29 @@ console.log(solution(arr1));
 // console.log(solution(arr));
 
 let fs = require("fs");
-let arr = require("fs").readFileSync("ex.txt").toString().split("\n");
+let arr = require("fs")
+  .readFileSync("ex.txt")
+  .toString()
+  .split("\n")
+  .map(Number);
 // let arr = fs.readFileSync("/dev/stdin").toString().split("\n");
 
-console.log(arr);
 const rest =
   arr.reduce((a, b) => {
-    return Number(a) + Number(b);
+    return a + b;
   }, 0) - 100;
 
 console.log(rest);
-let answer = [];
-outerFor: for (let x = 0; x < arr.length; x++) {
-  for (let y = arr.length - 1; y > 0; y--) {
-    if (Number(arr[x]) + Number(arr[y]) === rest) {
-      answer.push(Number(x));
-      answer.push(Number(y));
+outerFor: for (let x = 0; x < arr.length - 1; x++) {
+  innerFor: for (let y = 1; y < arr.length; y++) {
+    if (arr[x] + arr[y] === rest) {
+      arr.splice(y, 1);
+      arr.splice(x, 1);
       break outerFor;
     }
   }
-  x++;
 }
 
-answer.sort();
-arr.splice(answer[0], 1);
-arr.splice(answer[1] - 1, 1);
-console.log(arr);
 arr.map((a) => {
   console.log(a);
 });
